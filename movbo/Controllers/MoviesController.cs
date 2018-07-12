@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Movbo.Models;
+using Movbo.ViewModels;
 
 namespace Movbo.Controllers
 {
@@ -25,7 +26,19 @@ namespace Movbo.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Shrek" };
-            return View(movie);
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer 1"},
+                new Customer { Name = "Customer 2"}
+            };
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult Edit(int id)
